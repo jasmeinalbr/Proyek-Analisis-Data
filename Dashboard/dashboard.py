@@ -2,12 +2,18 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 import streamlit as st
+import os
 
 sns.set(style='darkgrid')
 
-# Load data
-day_df = pd.read_csv("day_clean.csv")
-hour_df = pd.read_csv("hour_clean.csv")
+# Tentukan path absolut relatif ke lokasi script
+script_dir = os.path.dirname(__file__)  # Direktori tempat dashboard.py berada
+day_path = os.path.join(script_dir, "day_clean.csv")
+hour_path = os.path.join(script_dir, "hour_clean.csv")
+
+# Load data dengan path yang sudah dikonfigurasi
+day_df = pd.read_csv(day_path)
+hour_df = pd.read_csv(hour_path)
 
 # Convert date column to datetime format
 day_df['date'] = pd.to_datetime(day_df['date'])
